@@ -1,6 +1,6 @@
 package IS;
 
-import java.awt.*;
+import java.awt.*;//импорт пакета
 import java.awt.event.*;
 import javax.swing.*;
 
