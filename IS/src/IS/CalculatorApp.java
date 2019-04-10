@@ -1,141 +1,189 @@
-package IS; //название пакета
-
+/* Указывается название пакета */
+package IS; 
+ 
+/* Импорт необходимых пакетов */
 import java.awt.*; // импорт пакета
 import java.awt.event.*; //импорт пакета
 import javax.swing.*; //импорт пакета
 
-public class CalculatorApp { //класс, который запускает калькулятор
+/* Класс, который создаёт объекта класса калькулятора и делает его видимым.
+  Указано, что во время выполнения метода main, может вызваться исключение, которое метод поручает тому, что вызывает метод main
+  (throws InterruptedException)*/
+public class CalculatorApp { 
 
-	public static void main(String[] args) throws InterruptedException { //метод, который запускает калькулятор
-		Calculator calc = new Calculator();  //создание объекта типа Calculator
-		calc.setVisible(true);  //задание видимости калькулятора
+	public static void main(String[] args) throws InterruptedException { 
+		Calculator calc = new Calculator();  
+		
+		/* Сделать калькулятор видимым */
+		calc.setVisible(true);  
 
 	}
 
 }
 
-
-class Calculator extends JFrame  { //класс калькулятора
-	 JLabel label1, label2, label3, label4; //объявление объектов типа JLabel
-	 JButton bDean, bCathedra, bExecute ; //объявление объектов тип JButton
-	 JTextField textField1, textField2, textField3, textField4;  //объявление объектов типа JTexTfield
-	 JPanel panel; //объявление объекта типа JPanel
+/* Класс калькулятора, который наследует класс JFrame */
+class Calculator extends JFrame  { 
+	/* Объявление объектов типа JLabel */
+	 JLabel label1, label2, label3, label4;
 	 
-	public Calculator() throws InterruptedException { //конструктор класса Calculator
-		super("Calculator");  //название окна калькулятора
-		setBounds(370, 300, 250, 100); //задание размера и расположения окна
+	 /* объявление объектов тип JButton */
+	 JButton bDean, bCathedra, bExecute ; 
+	 
+	 /* объявление объектов тип JTextField */
+	 JTextField textField1, textField2, textField3, textField4; 
+	 
+	 /* объявление объекта типа JPanel */
+	 JPanel panel; 
+	 
+	 /*Конструктор класса, в ходе действия которого может быть брошено исключение, которое конструктор
+	    поручает тому, что вызывает конструктор * (throws InterruptedException)*/
+	public Calculator() throws InterruptedException { 
+		/* Название окна калькулятора */
+		super("Calculator");
 		
-		label1 = new JLabel("Выберите роль пользователя"); //создание объекта
-		bCathedra = new JButton("Зав. кафедрой"); //создание объекта
-		bDean = new JButton("Декан"); //создание объекта
+		/* Задание размера и расположения окна */
+		setBounds(370, 300, 250, 100); 
 		
-		panel = new JPanel(new FlowLayout());  //создание объекта и выдача ему менеджера компановки 
-		panel.add(label1); //добавление объекта на панель
-		panel.add(bCathedra); //добавление объекта на панель
-		panel.add(bDean); //добавление объекта на панель
+		/*Создание объектов*/
+		label1 = new JLabel("Выберите роль пользователя"); 
+		bCathedra = new JButton("Зав. кафедрой"); 
+		bDean = new JButton("Декан"); 
 		
-		add(panel); //добавление панели в окно
+		/*Создание объекта панели, указание его менеджера компановки и добавление объектов на панель */
+		panel = new JPanel(new FlowLayout());   
+		panel.add(label1); 
+		panel.add(bCathedra); 
+		panel.add(bDean); 
 		
-		bCathedra.addActionListener(new ActionListener() { //добавить слушателя к кнопке
-
-			@Override //переопределение метода
-			public void actionPerformed(ActionEvent arg0) { //указать, что случится при нажатии кнопки
-				panel.removeAll(); //очистить панель
+		/* добавление панели в окно */
+		add(panel); 
+		
+		/* Добавление слушателя событий к кнопке bCathedra */
+		bCathedra.addActionListener(new ActionListener() { 
+			/* Аннотация, означающая, что далее идёт переопределение метода. Сам метод вызывается, когда происходит нажатие на
+			 *  соответвествующую кнопку */
+			@Override 
+			public void actionPerformed(ActionEvent arg0) { 
+				/* Очистить панель */
+				panel.removeAll(); 
 				
+				/* Задание размера и расположения окна */
+				setBounds(630, 390, 630, 200); 
 				
-				setBounds(630, 390, 630, 200); //задание размера и расположения окна
+				/* Создание объектов */
+				label1 = new JLabel("Введите количество учеников"); 
+				label2 = new JLabel("Введите количество учеников на руководителя (от 1 до 5)"); 
+				label3 = new JLabel("Введите количество свободных руководителей с кафедры"); 
+				label4 = new JLabel("Результат");
 				
-				label1 = new JLabel("Введите количество учеников"); //создание объекта
-				label2 = new JLabel("Введите количество учеников на руководителя (от 1 до 5)"); //создание объекта
-				label3 = new JLabel("Введите количество свободных руководителей с кафедры"); //создание объекта
-				label4 = new JLabel("Результат");//создание объекта
+				textField1 = new JTextField("", 2); 
+				textField2 = new JTextField("", 2); 
+				textField3 = new JTextField("", 2); 
+				textField4 = new JTextField("", 55); 
 				
-				textField1 = new JTextField("", 2); //создание объекта
-				textField2 = new JTextField("", 2); //создание объекта
-				textField3 = new JTextField("", 2); //создание объекта
-				textField4 = new JTextField("", 55); //создание объекта
-				
-				bExecute = new JButton("Провести расчёт");//создание объекта
-				bExecute.addActionListener(new ActionListener() { //добавить слушателя к кнопке
-
-					@Override //переопределение метода
-					public void actionPerformed(ActionEvent arg0) { //указать, что случится при нажатии кнопки
-						doCount(); //вызов метода для расчёта
+				bExecute = new JButton("Провести расчёт");
+				/* Добавление слушателя событий к кнопке bExecute */
+				bExecute.addActionListener(new ActionListener() { 
+					/* Аннотация, означающая, что далее идёт переопределение метода. Сам метод вызывается, когда происходит нажатие на
+					 *  соответвествующую кнопку */
+					@Override 
+					public void actionPerformed(ActionEvent arg0) {
+						/* Вызов метода для расчёта */
+						doCount(); 
 						
 					}
 					
 				});
 				
-				
-				panel.add(label1); //добавление объекта на панель
-				panel.add(textField1); //добавление объекта на панель
-				panel.add(label2); //добавление объекта на панель
-				panel.add(textField2); //добавление объекта на панель
-				panel.add(label3); //добавление объекта на панель
-				panel.add(textField3); //добавление объекта на панель
-				panel.add(label4); //добавление объекта на панель
-				panel.add(textField4); //добавление объекта на панель
-				panel.add(bExecute);//добавление объекта на панель
+				/* Создание объектов */
+				panel.add(label1); 
+				panel.add(textField1); 
+				panel.add(label2); 
+				panel.add(textField2); 
+				panel.add(label3); 
+				panel.add(textField3); 
+				panel.add(label4); 
+				panel.add(textField4); 
+				panel.add(bExecute);
 				
 			}
 			
 		});
 		
-		bDean.addActionListener(new ActionListener() { //добавить слушателя к кнопке
-
-			@Override //переопределение метода
-			public void actionPerformed(ActionEvent e) { //указать, что случится при нажатии кнопки
-				panel.removeAll(); //очистить панель
-				panel.revalidate(); //поместить  контейнер как недействительный и выполнить компоновку контейнера.
-				setBounds(630, 390, 250, 120); //задание размера и расположения окна
+		/* Добавление слушателя событий к кнопке bDean*/
+		bDean.addActionListener(new ActionListener() { 
+			/* Аннотация, означающая, что далее идёт переопределение метода. Сам метод вызывается, когда происходит нажатие на
+			 соответвествующую кнопку */
+			@Override 
+			public void actionPerformed(ActionEvent e) { 
 				
-				label1 = new JLabel("Введите название кафедры"); //создание объекта
-				textField1 = new JTextField("", 20); //создание объекта
-				bExecute = new JButton("Далее"); //создание объекта
+				/* Очистить панель */
+				panel.removeAll(); 
 				
-				panel.add(label1); //добавление объекта на панель
-				panel.add(textField1); //добавление объекта на панель
-				panel.add(bExecute); //добавление объекта на панель
+				/* Поместить  контейнер как недействительный и выполнить компоновку контейнера */
+				panel.revalidate(); 
 				
-				bExecute.addActionListener(new ActionListener() { //добавить слушателя к кнопке
-
-					@Override //переопределение метода
-					public void actionPerformed(ActionEvent arg0) { //указать, что случится при нажатии кнопки
-						panel.removeAll(); //очистить панель
+				/* Задание размера и расположения окна */
+				setBounds(630, 390, 250, 120); 
+				
+				/* Создание объектов */
+				label1 = new JLabel("Введите название кафедры"); 
+				textField1 = new JTextField("", 20); 
+				bExecute = new JButton("Далее"); 
+				
+				/* Добавление объектов на панель */
+				panel.add(label1); 
+				panel.add(textField1); 
+				panel.add(bExecute); 
+				
+				/* Добавление слушателя событий к кнопке bExecute*/
+				bExecute.addActionListener(new ActionListener() { 
+					/* Аннотация, означающая, что далее идёт переопределение метода. Сам метод вызывается, когда происходит нажатие на
+					   соответвествующую кнопку */
+					@Override 
+					public void actionPerformed(ActionEvent arg0) { 
+						/* Очистить панель */
+						panel.removeAll(); 
 						
+						/* Задание размера и расположения окна */
+						setBounds(630, 390, 630, 200); 
 						
-						setBounds(630, 390, 630, 200); //задание размера и расположения окна
+						/* Создание объектов */
+						label1 = new JLabel("Введите количество учеников"); 
+						label2 = new JLabel("Введите количество учеников на руководителя (от 1 до 5)"); 
+						label3 = new JLabel("Введите количество свободных руководителей с кафедры"); 
+						label4 = new JLabel("Результат");
 						
-						label1 = new JLabel("Введите количество учеников"); //создание объекта
-						label2 = new JLabel("Введите количество учеников на руководителя (от 1 до 5)"); //создание объекта
-						label3 = new JLabel("Введите количество свободных руководителей с кафедры"); //создание объекта
-						label4 = new JLabel("Результат");//создание объекта
+						textField1 = new JTextField("", 2); 
+						textField2 = new JTextField("", 2); 
+						textField3 = new JTextField("", 2);
+						textField4 = new JTextField("", 55); 
 						
-						textField1 = new JTextField("", 2); //создание объекта
-						textField2 = new JTextField("", 2); //создание объекта
-						textField3 = new JTextField("", 2);//создание объекта
-						textField4 = new JTextField("", 55); //создание объекта
+						bExecute = new JButton("Провести расчёт"); 
 						
-						bExecute = new JButton("Провести расчёт"); //создание объекта
-						bExecute.addActionListener(new ActionListener() { //добавить слушателя к кнопке
-
-							@Override //переопределение метода
-							public void actionPerformed(ActionEvent arg0) { //указать, что случится при нажатии кнопки
-								doCount(); //вызов метода для расчёта
+						/* Добавление слушателя событий к кнопке bExecute*/
+						bExecute.addActionListener(new ActionListener() { 
+							/* Аннотация, означающая, что далее идёт переопределение метода. Сам метод вызывается, когда происходит нажатие на
+							   соответвествующую кнопку */
+							@Override 
+							public void actionPerformed(ActionEvent arg0) { 
+								/* Вызов метода для расчёта */
+								doCount(); 
 								
 							}
 							
 						});
 						
-						panel.add(label1);  //добавление объекта на панель
-						panel.add(textField1);  //добавление объекта на панель
-						panel.add(label2);  //добавление объекта на панель
-						panel.add(textField2);  //добавление объекта на панель
-						panel.add(label3);  //добавление объекта на панель
-						panel.add(textField3);  //добавление объекта на панель
-						panel.add(label4); //добавление объекта на панель
-						panel.add(textField4);  //добавление объекта на панель
-						panel.add(bExecute); //добавление объекта на панель
+						/* Добавление объектов на панель */
+						panel.add(label1);  
+						panel.add(textField1);  
+						panel.add(label2);  
+						panel.add(textField2);  
+						panel.add(label3);  
+						panel.add(textField3);  
+						panel.add(label4); 
+						panel.add(textField4);  
+						panel.add(bExecute); 
 						
 					}
 					
@@ -146,48 +194,76 @@ class Calculator extends JFrame  { //класс калькулятора
 	}
 
 	
-	public void doCount(){ //метод для расчёта
-		int totalStudents = 0, studentsPerTeacher = 0, freeCathedraTeachers = 0; //объявление переменных, значение которых вводит пользователь
-		int requiredTotalTeachers = 0, requiredCathedraTeachers = 0, requiredNonCathedraTeachers = 0; //объявление переменных, которые будут выведены
+	/* Метод для расчёта */
+	public void doCount(){ 
+		/*Объявление переменных, значение которых вводит пользователь */
+		int totalStudents = 0, studentsPerTeacher = 0, freeCathedraTeachers = 0; 
 		
-		try { //сделать что-то, что может вызвать исключение
-			totalStudents = Integer.parseInt(textField1.getText()); //считать значение переменной с текстовой строки
-			if(totalStudents < 0) //при выполнении условиия
-				throw new Exception(); //вызвать исключение
+		 /*Объявление переменных, которые будут выведены */
+		int requiredTotalTeachers = 0, requiredCathedraTeachers = 0, requiredNonCathedraTeachers = 0;
+		
+		/* Cделать что-то, что может вызвать исключение */
+		try { 
+			/* Считать значение переменной с текстовой строки */
+			totalStudents = Integer.parseInt(textField1.getText()); 
 			
-			studentsPerTeacher = Integer.parseInt(textField2.getText()); //считать значение переменной с текстовой строки
-			if(!(studentsPerTeacher >= 1 && studentsPerTeacher <= 5)) //при выполнении условиия
-				throw new Exception(); //вызвать исключение
+			/*При выполнении условия вызвать исключение */
+			if(totalStudents < 0) 
+				throw new Exception(); 
 			
-			freeCathedraTeachers = Integer.parseInt(textField3.getText()); //считать значение переменной с текстовой строки
-			if(freeCathedraTeachers < 0) //при выполнении условиия
-				throw new Exception(); //вызвать исключение
+			/* Считать значение переменной с текстовой строки */
+			studentsPerTeacher = Integer.parseInt(textField2.getText()); 
+			
+			/* При выполнении условия вызвать исключение */
+			if(!(studentsPerTeacher >= 1 && studentsPerTeacher <= 5)) 
+				throw new Exception(); 
+			
+			/* Считать значение переменной с текстовой строки */
+			freeCathedraTeachers = Integer.parseInt(textField3.getText()); 
+			
+			/* При выполнении условия вызвать исключение */
+			if(freeCathedraTeachers < 0) 
+				throw new Exception(); 
 		}
-		catch(Exception e) { //что сделать при поимке исключения
-			totalStudents = 0; //приравнять значение переменной к 0
-			textField1.setText(""); //очистить содержимое текстовой строки
+		/* Описание того, что сделать при поимке исключения */
+		catch(Exception e) { 
+			//приравнять значение Переменных к 0 и очистить содержимое текстовых строк */
+			totalStudents = 0; 
+			textField1.setText(""); 
 			
-			studentsPerTeacher = 0; //приравнять значение переменной к 0
-			textField2.setText(""); //очистить содержимое текстовой строки
+			studentsPerTeacher = 0; 
+			textField2.setText(""); 
 			
-			freeCathedraTeachers = 0; //приравнять значение переменной к 0
-			textField3.setText(""); //очистить содержимое текстовой строки
+			freeCathedraTeachers = 0; 
+			textField3.setText(""); 
 			
-			textField4.setText("Ошибка ввода"); //изменить содержимое текстовой строки
-			return; //возврат из метода
+			/* Изменить содержимое текстовой строки */
+			textField4.setText("Ошибка ввода"); 
+			
+			/* Возврат из метода */
+			return; 
 		}
 		
-		requiredTotalTeachers = totalStudents / studentsPerTeacher; //вычисление количества требуемых руководителей
-		if(totalStudents % studentsPerTeacher != 0) //если количество требуемых руководителей не целое
-			requiredTotalTeachers++; //увеличить значение переменной на 1
+		/* Вычисление общего количества необходимых руководителей */
+		requiredTotalTeachers = totalStudents / studentsPerTeacher; 
+		/*Если количество необходимых руководителей не целое, увеличить значение переменной на 1 */
+		if(totalStudents % studentsPerTeacher != 0) 
+			requiredTotalTeachers++; 
 		
-		if(requiredTotalTeachers <= freeCathedraTeachers) //если общее количество требуемых руководителей меньше либо равно количеству свободных руководителей с кафедры
-			requiredCathedraTeachers = requiredTotalTeachers; //то требуемое количество руководителей с кафедры равно общему количеству требуемых руководителей (в таком случаеколичество руководителей не с кафедры равно 0)
-		else { //иначе
-			requiredCathedraTeachers = freeCathedraTeachers; //количество требуемых руководителей с кафедры равно количеству свободных руководителей с кафедры
-			requiredNonCathedraTeachers = requiredTotalTeachers - freeCathedraTeachers; //количество требуемых руководителей не с кафедры равно разности общего количества требуемых руководителей и количества свободных руководителей с кафедры
+		/*Если общее количество необходимых руководителей меньше либо равно количеству свободных руководителей с кафедры
+		то  количество необходимых руководителей с кафедры равно общему количеству требуемых руководителей
+		(в таком случае количество руководителей не с кафедры равно 0)*/
+		if(requiredTotalTeachers <= freeCathedraTeachers) 
+			requiredCathedraTeachers = requiredTotalTeachers; 
+		
+		/* Иначе количество необходимых руководителей с кафедры равно количеству свободных руководителей с кафедры, а  количество небходимых 
+		 * руководителей не с кафедры равно разности общего количества необходимых руководителей и количества свободных руководителей с кафедры */
+		else { 
+			requiredCathedraTeachers = freeCathedraTeachers; 
+			requiredNonCathedraTeachers = requiredTotalTeachers - freeCathedraTeachers; 
 		}
-		textField4.setText("Необходимы дипломные руководители в количестве " + requiredTotalTeachers + " чел.: " + requiredCathedraTeachers + " чел. с кафедры и " + requiredNonCathedraTeachers + " чел. не с кафедры."); //вывод результата
+		/* Вывод результата */
+		textField4.setText("Необходимы дипломные руководители в количестве " + requiredTotalTeachers + " чел.: " + requiredCathedraTeachers + " чел. с кафедры и " + requiredNonCathedraTeachers + " чел. не с кафедры."); 
 	}
 	
 }
