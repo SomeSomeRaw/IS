@@ -7,8 +7,7 @@ import java.awt.event.*; //импорт пакета
 import javax.swing.*; //импорт пакета
 
 /* Класс, который создаёт объекта класса калькулятора и делает его видимым.
-  Указано, что во время выполнения метода main, может вызваться исключение, которое метод поручает тому, кто вызывает метод main
-  (throws InterruptedException)*/
+  Указано, что во время выполнения метода может вызваться исключение, которое метод поручает обработать тому, кто вызывает метод*/
 public class CalculatorApp { 
 
 	public static void main(String[] args) throws InterruptedException { 
@@ -21,22 +20,21 @@ public class CalculatorApp {
 
 }
 
-/* Класс калькулятора, который наследует класс JFrame */
+/* Класс калькулятора, который наследует соответствующий класс  */
 class Calculator extends JFrame  { 
-	/* Объявление объектов типа JLabel */
+	/* Объявление объектов соответствующего типа  */
 	 JLabel label1, label2, label3, label4;
 	 
-	 /* объявление объектов тип JButton */
+	 /* Объявление объектов соответствующего типа  */
 	 JButton bDean, bCathedra, bExecute ; 
 	 
-	 /* объявление объектов тип JTextField */
+	 /* Объявление объектов соответствующего типа  */
 	 JTextField textField1, textField2, textField3, textField4; 
 	 
-	 /* объявление объекта типа JPanel */
+	 /* Объявление объекта соответствующего типа */
 	 JPanel panel; 
 	 
-	 /*Конструктор класса, в ходе действия которого может быть брошено исключение, которое конструктор
-	    поручает тому, кто вызывает конструктор * (throws InterruptedException)*/
+	 /*Конструктор класса, в ходе действия которого может быть брошено исключение, которое конструктор поручает обработать тому, кто вызывает конструктор */
 	public Calculator() throws InterruptedException { 
 		/* Название окна калькулятора */
 		super("Calculator");
@@ -49,19 +47,19 @@ class Calculator extends JFrame  {
 		bCathedra = new JButton("Зав. кафедрой"); 
 		bDean = new JButton("Декан"); 
 		
-		/*Создание объекта панели, указание его менеджера компановки и добавление объектов на панель */
+		/*Создание объекта панели, указание его менеджера компоновки и добавление объектов на панель */
 		panel = new JPanel(new FlowLayout());   
 		panel.add(label1); 
 		panel.add(bCathedra); 
 		panel.add(bDean); 
 		
-		/* добавление панели в окно */
+		/* Добавление панели в окно */
 		add(panel); 
 		
-		/* Добавление слушателя событий к кнопке bCathedra */
+		/* Добавление слушателя событий к соответствующей кнопке  */
 		bCathedra.addActionListener(new ActionListener() { 
 			/* Аннотация, означающая, что далее идёт переопределение метода. Сам метод вызывается, когда происходит нажатие на
-			   соответвествующую кнопку */
+			   соответствующую кнопку */
 			@Override 
 			public void actionPerformed(ActionEvent arg0) { 
 				/* Очистить панель */
@@ -82,10 +80,10 @@ class Calculator extends JFrame  {
 				textField4 = new JTextField("", 55); 
 				
 				bExecute = new JButton("Провести расчёт");
-				/* Добавление слушателя событий к кнопке bExecute */
+				/* Добавление слушателя событий к соответствующую кнопке  */
 				bExecute.addActionListener(new ActionListener() { 
 					/* Аннотация, означающая, что далее идёт переопределение метода. Сам метод вызывается, когда происходит нажатие на
-					   соответвествующую кнопку */
+					   соответствующую кнопку */
 					@Override 
 					public void actionPerformed(ActionEvent arg0) {
 						/* Вызов метода для расчёта */
@@ -110,10 +108,10 @@ class Calculator extends JFrame  {
 			
 		});
 		
-		/* Добавление слушателя событий к кнопке bDean*/
+		/* Добавление слушателя событий к соответствующей кнопке*/
 		bDean.addActionListener(new ActionListener() { 
 			/* Аннотация, означающая, что далее идёт переопределение метода. Сам метод вызывается, когда происходит нажатие на
-			 соответвествующую кнопку */
+			 соответствующую кнопку */
 			@Override 
 			public void actionPerformed(ActionEvent e) { 
 				
@@ -136,10 +134,10 @@ class Calculator extends JFrame  {
 				panel.add(textField1); 
 				panel.add(bExecute); 
 				
-				/* Добавление слушателя событий к кнопке bExecute*/
+				/* Добавление слушателя событий к соответствующей кнопке */
 				bExecute.addActionListener(new ActionListener() { 
 					/* Аннотация, означающая, что далее идёт переопределение метода. Сам метод вызывается, когда происходит нажатие на
-					   соответвествующую кнопку */
+					   соответствующую кнопку */
 					@Override 
 					public void actionPerformed(ActionEvent arg0) { 
 						/* Очистить панель */
@@ -161,10 +159,10 @@ class Calculator extends JFrame  {
 						
 						bExecute = new JButton("Провести расчёт"); 
 						
-						/* Добавление слушателя событий к кнопке bExecute*/
+						/* Добавление слушателя событий к соответствующей кнопке*/
 						bExecute.addActionListener(new ActionListener() { 
 							/* Аннотация, означающая, что далее идёт переопределение метода. Сам метод вызывается, когда происходит нажатие на
-							   соответвествующую кнопку */
+							   соответствующую кнопку */
 							@Override 
 							public void actionPerformed(ActionEvent arg0) { 
 								/* Вызов метода для расчёта */
@@ -227,7 +225,7 @@ class Calculator extends JFrame  {
 		}
 		/* Описание того, что сделать при поимке исключения */
 		catch(Exception e) { 
-			//приравнять значение Переменных к 0 и очистить содержимое текстовых строк */
+			/*Приравнять значение переменных к 0 и очистить содержимое текстовых строк */
 			totalStudents = 0; 
 			textField1.setText(""); 
 			
@@ -256,7 +254,7 @@ class Calculator extends JFrame  {
 		if(requiredTotalTeachers <= freeCathedraTeachers) 
 			requiredCathedraTeachers = requiredTotalTeachers; 
 		
-		/* Иначе количество необходимых руководителей с кафедры равно количеству свободных руководителей с кафедры, а  количество небходимых 
+		/* Иначе количество необходимых руководителей с кафедры равно количеству свободных руководителей с кафедры, а  количество необходимых 
 		 руководителей не с кафедры равно разности общего количества необходимых руководителей и количества свободных руководителей с кафедры */
 		else { 
 			requiredCathedraTeachers = freeCathedraTeachers; 
